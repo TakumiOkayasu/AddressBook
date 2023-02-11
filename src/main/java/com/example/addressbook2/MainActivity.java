@@ -1,8 +1,11 @@
 package com.example.addressbook2;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,15 +19,49 @@ public class MainActivity extends AppCompatActivity
 		setContentView( R.layout.activity_main );
 
 		findViewById( R.id.btn_show_list ).setOnClickListener( v -> moveToAddressList() );
-
-		String name = ( ( TextView ) findViewById( R.id.et_name ) ).getText().toString();
-		String address = ( ( TextView ) findViewById( R.id.et_address ) ).getText().toString();
-		String tel = ( ( TextView ) findViewById( R.id.et_tel ) ).getText().toString();
-		String birthday = ( ( TextView ) findViewById( R.id.et_birthday ) ).getText().toString();
-
 		findViewById( R.id.btn_register ).setOnClickListener( v ->
-			Toast.makeText( this, registerItem( new AddressItem( name, address, tel, birthday ) ) ? "登録しました" : "登録に失敗しました", Toast.LENGTH_SHORT ).show()
-		);
+		{
+			AddressItem item = new AddressItem();
+
+			EditText name = findViewById( R.id.et_name );
+			EditText address = findViewById( R.id.et_address );
+			EditText tel = findViewById( R.id.et_tel );
+			EditText birthday = findViewById( R.id.et_birthday );
+
+			// 最後の項目でエンターキーが押されたらキーボードを非表示にする
+			birthday.setOnEditorActionListener( ( v1, actionId, event ) ->
+			{
+				if( actionId == EditorInfo.IME_ACTION_DONE ) {
+					hideSoftwareKeyboard();
+				}
+				return false;
+			} );
+
+			item.name = name.getText().toString();
+			item.address = address.getText().toString();
+			item.tel = tel.getText().toString();
+			item.birthday = birthday.getText().toString();
+
+			// 空欄がなければ登録するフラグ
+			boolean isRegisterable = !( item.name.isEmpty() || item.address.isEmpty() || item.tel.isEmpty() || item.birthday.isEmpty() );
+
+			if( isRegisterable ) {
+				Toast.makeText( this, registerItem( item ) ? "登録しました" : "登録に失敗しました", Toast.LENGTH_SHORT ).show();
+
+				name.setText( "" );
+				address.setText( "" );
+				tel.setText( "" );
+				birthday.setText( "" );
+			}
+			else {
+				new AlertDialog
+					.Builder( this )
+					.setTitle( "エラー" )
+					.setMessage( "入力項目に空欄があります。" )
+					.setPositiveButton( "はい", ( dialog, which ) -> {} )
+					.show();
+			}
+		} );
 	}
 
 	private void moveToAddressList()
@@ -34,6 +71,14 @@ public class MainActivity extends AppCompatActivity
 
 	private boolean registerItem( AddressItem item )
 	{
-		return new AddressBookHelper( this ).registerItem( item );
+		try( AddressBookHelper accesser = new AddressBookHelper( this ) ) {
+			return accesser.registerItem( item );
+		}
+	}
+
+	private void hideSoftwareKeyboard()
+	{
+		InputMethodManager imm = ( InputMethodManager ) getSystemService( INPUT_METHOD_SERVICE );
+		imm.hideSoftInputFromWindow( getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS );
 	}
 }

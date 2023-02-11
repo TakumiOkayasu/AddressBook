@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
+import java.util.Locale;
 
 public class AddressListViewActivity extends AppCompatActivity
 {
@@ -28,21 +29,18 @@ public class AddressListViewActivity extends AppCompatActivity
 
 		listView.setOnItemLongClickListener( ( parent, view, position, id ) ->
 		{
-			String deleteTarget = ( ( TextView ) findViewById( R.id.tv_list_ID ) ).getText().toString();
-
 			new AlertDialog
 				.Builder( this )
 				.setTitle( "削除" )
-				.setMessage( String.format( "ID: %s を削除しますか？", deleteTarget ) )
+				.setMessage( String.format( Locale.JAPAN, "ID: %d を削除しますか？", id ) )
 				.setPositiveButton( "はい", ( dialog, which ) ->
 				{
-					long delete_id = Integer.parseInt( deleteTarget );
-					if( accesser.deleteItem( delete_id ) ) {
+					if( accesser.deleteItem( id ) ) {
 						items.remove( position );
 						adapter.notifyDataSetChanged();
 					}
 					else {
-						throw new RuntimeException( "delete id = " + delete_id );
+						throw new RuntimeException( "delete id = " + id );
 					}
 				} )
 				.setNegativeButton( "キャンセル", ( dialog, which ) -> {} )

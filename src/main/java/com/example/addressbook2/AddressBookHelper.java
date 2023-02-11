@@ -14,7 +14,7 @@ import java.util.List;
 public class AddressBookHelper extends SQLiteOpenHelper implements AddressBookAccesser
 {
 	private static final String DB_NAME = "address_books.sqlite";
-	private static final int VERSION = 2;
+	private static final int VERSION = 3;
 
 	public AddressBookHelper( @Nullable Context context )
 	{
