@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">AddressBook</string>
+    <string name="tv_app_name">AddressBook</string>
+    <string name="tv_title">連絡先：登録ページ</string>
+    <string name="tv_name">名  前</string>
+    <string name="tv_address">住  所</string>
+    <string name="tv_tel">電話番号</string>
+    <string name="tv_birthday">生年月日</string>
+    <string name="hint_tel">000-0000-0000</string>
+    <string name="hint_address">都道府県から入力</string>
+    <string name="hint_name">姓　名</string>
+    <string name="hint_birthday">yyyy/MM/dd</string>
+    <string name="btn_show_list_str">登録済み一覧を表示</string>
+    <string name="btn_register_str">新規登録</string>
+    <string name="tv_list_ID">ID</string>
+    <string name="tv_list_name">名前</string>
+    <string name="tv_list_address">住所</string>
+    <string name="tv_list_tel">電話番号</string>
+    <string name="tv_list_birthday">誕生日</string>
+    <string name="btn_back">登録画面に戻る</string>
+</resources>
