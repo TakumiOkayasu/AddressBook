@@ -7,6 +7,17 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/tv_title"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,25 +28,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
-    <TextView
-        android:id="@+id/tv_birthday"
+    <EditText
+        android:id="@+id/et_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/tv_birthday"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/hint_name"
+        android:inputType="textPersonName"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/tv_tel"
-        app:layout_constraintTop_toBottomOf="@+id/et_tel" />
-
-    <TextView
-        android:id="@+id/tv_tel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/tv_tel"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/tv_address"
-        app:layout_constraintTop_toBottomOf="@+id/et_address" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.684"
+        app:layout_constraintStart_toEndOf="@+id/tv_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_name"
+        app:layout_constraintVertical_bias="0.571" />
 
     <TextView
         android:id="@+id/tv_address"
@@ -47,16 +54,30 @@
         app:layout_constraintStart_toStartOf="@+id/tv_name"
         app:layout_constraintTop_toBottomOf="@+id/et_name" />
 
-    <TextView
-        android:id="@+id/tv_title"
+    <EditText
+        android:id="@+id/et_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/tv_title"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/hint_address"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_address"
+        app:layout_constraintEnd_toEndOf="@+id/et_name"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_address"
+        app:layout_constraintTop_toTopOf="@+id/tv_address" />
+
+    <TextView
+        android:id="@+id/tv_birthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/tv_birthday"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_tel"
+        app:layout_constraintTop_toBottomOf="@+id/et_tel" />
 
     <EditText
         android:id="@+id/et_birthday"
@@ -66,28 +87,21 @@
         android:ems="10"
         android:hint="@string/hint_birthday"
         android:inputType="date"
-        android:text="2002/1/23"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_birthday"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_birthday"
         app:layout_constraintTop_toTopOf="@+id/tv_birthday" />
 
-    <EditText
-        android:id="@+id/et_address"
+    <TextView
+        android:id="@+id/tv_tel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/hint_address"
-        android:inputType="textPersonName"
-        android:text="北海道札幌市"
+        android:layout_marginTop="24dp"
+        android:text="@string/tv_tel"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_address"
-        app:layout_constraintEnd_toEndOf="@+id/et_name"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/tv_address"
-        app:layout_constraintTop_toTopOf="@+id/tv_address" />
+        app:layout_constraintStart_toStartOf="@+id/tv_address"
+        app:layout_constraintTop_toBottomOf="@+id/et_address" />
 
     <EditText
         android:id="@+id/et_tel"
@@ -97,29 +111,11 @@
         android:ems="10"
         android:hint="@string/hint_tel"
         android:inputType="phone"
-        android:text="090-9876-1234"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_tel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_tel"
         app:layout_constraintTop_toTopOf="@+id/tv_tel" />
-
-    <EditText
-        android:id="@+id/et_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/hint_name"
-        android:inputType="textPersonName"
-        android:text="テスト太郎"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.684"
-        app:layout_constraintStart_toEndOf="@+id/tv_name"
-        app:layout_constraintTop_toTopOf="@+id/tv_name"
-        app:layout_constraintVertical_bias="0.571" />
 
     <Button
         android:id="@+id/btn_show_list"
